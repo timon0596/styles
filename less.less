@@ -1,0 +1,27 @@
+@colors: orange, purple, blue, green, night, yellow, licensePlate, oceanBlue, grey, warning;
+.colorMap.asd {
+  @purple: #70f;
+  @orange: #ff4f12;
+  @blue: #2f9aff;
+  @green: #00ba8b;
+  @night: #4075ff;
+  @yellow: #ffa307;
+  @licensePlate: #9466ff;
+  @oceanBlue: #1053ff;
+  @grey: #323b48;
+  @warning: orange;
+}
+.ghostButtons(@list, @i: 1) when (@i <= length(@list)) {
+  @color: extract(@list, @i);
+  .ghost.button_@{color} {
+    color: .colorMap.asd[ @@color];
+    background: none;
+    &:hover {
+      background: fade(white, 20%);
+    }
+  }
+
+  .ghostButtons(@list, @i + 1);
+}
+
+.ghostButtons(@colors);
